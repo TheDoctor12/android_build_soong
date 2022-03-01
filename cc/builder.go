@@ -573,6 +573,13 @@ func transformSourceToObj(ctx ModuleContext, subdir string, srcFiles, noTidySrcs
 		return "$" + kind + n
 	}
 
+	if config.SDClang {
+		cflags += " ${config.SDClangFlags}"
+		toolingCflags += " ${config.SDClangFlags}"
+		cppflags += " ${config.SDClangFlags}"
+		toolingCppflags += " ${config.SDClangFlags}"
+	}
+
 	for i, srcFile := range srcFiles {
 		objFile := android.ObjPathWithExt(ctx, subdir, srcFile, "o")
 
